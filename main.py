@@ -14,6 +14,8 @@ from linebot.exceptions import (
 )
 from linebot.models import (
     MessageEvent, TextMessage, TextSendMessage,ImageMessage,
+    VideoMessage,AudioMessage,LocationMessage,StickerMessage,
+    FileMessage,
 )
 
 app = Flask(__name__)
@@ -72,6 +74,14 @@ def handle_message_image(event):
         TextSendMessage(text='ナイスですね～')
     )
 
+#その他ファイルの場合(音声、動画、)
+@handler.add(MessageEvent, message=(VideoMessage,AudioMessage,LocationMessage,
+StickerMessage,FileMessage)
+def handle_message_other(event):
+    line_bot_api.reply_message(
+        event.reply_token,
+        TextSendMessage(text='ありがとう！でもその形式は対応してないよ！ごめんね！')
+    )
 
 if __name__ == "__main__":
 #    app.run()
