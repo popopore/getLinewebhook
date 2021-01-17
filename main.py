@@ -21,7 +21,7 @@ app = Flask(__name__)
 #ログを標準出力にする
 app.logger.addHandler(logging.StreamHandler(sys.stdout))
 #レベル設定
-app.logger.setLevel(logging.info)
+app.logger.setLevel(logging.INFO)
 
 #環境変数取得
 YOUR_CHANNEL_ACCESS_TOKEN = "1z5F956PvFaWUAgqKQftoqvFFWHskSmpCFEQPIxhy1CFd+x+BEro/fNwrZ+77Ww4Wi+Pck3EkUEyG/W2Hj4zB7PpUxCp0fHW6bxs5g/L9stHF7zAH9shKwu/q4v0S0apcrCJlK/TrQCr9tyypYLCYwdB04t89/1O/w1cDnyilFU="
