@@ -23,6 +23,9 @@ app.logger.addHandler(logging.StreamHandler(sys.stdout))
 #レベル設定
 app.logger.setLevel(logging.INFO)
 
+#ログファイル出力
+logging.basicConfig(filename="operation.log")
+
 #環境変数取得
 YOUR_CHANNEL_ACCESS_TOKEN = "1z5F956PvFaWUAgqKQftoqvFFWHskSmpCFEQPIxhy1CFd+x+BEro/fNwrZ+77Ww4Wi+Pck3EkUEyG/W2Hj4zB7PpUxCp0fHW6bxs5g/L9stHF7zAH9shKwu/q4v0S0apcrCJlK/TrQCr9tyypYLCYwdB04t89/1O/w1cDnyilFU="
 YOUR_CHANNEL_SECRET =  "9bbc72e90a42c22ff505d1541dd8ea49"
