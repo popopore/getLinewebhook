@@ -76,7 +76,7 @@ def handle_message_image(event):
 
 #その他ファイルの場合(音声、動画、)
 @handler.add(MessageEvent, message=(VideoMessage,AudioMessage,LocationMessage,
-StickerMessage,FileMessage)
+StickerMessage,FileMessage))
 def handle_message_other(event):
     line_bot_api.reply_message(
         event.reply_token,
