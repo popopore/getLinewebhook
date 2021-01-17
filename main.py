@@ -23,8 +23,10 @@ app.logger.addHandler(logging.StreamHandler(sys.stdout))
 #レベル設定
 app.logger.setLevel(logging.INFO)
 
-#ログファイル出力
+#ログファイル出力 ↓いらないかも。。。
 logging.basicConfig(filename="operation.log")
+
+
 
 #環境変数取得
 YOUR_CHANNEL_ACCESS_TOKEN = "1z5F956PvFaWUAgqKQftoqvFFWHskSmpCFEQPIxhy1CFd+x+BEro/fNwrZ+77Ww4Wi+Pck3EkUEyG/W2Hj4zB7PpUxCp0fHW6bxs5g/L9stHF7zAH9shKwu/q4v0S0apcrCJlK/TrQCr9tyypYLCYwdB04t89/1O/w1cDnyilFU="
@@ -54,11 +56,22 @@ def callback():
         abort(400)
     return 'OK'
 
+#メッセージイベントの場合
+#テキストメッセージの場合
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
     line_bot_api.reply_message(
         event.reply_token,
         TextSendMessage(text=event.message.text))
+
+#画像ファイルの場合
+@handler.add(MessageEvent, message=ImageMessage)
+def handle_message_image(event):
+    line_bot_api.reply_message(
+        event.reply_token,
+        TextSendMessage(text='ナイスですね～')
+    )
+
 
 if __name__ == "__main__":
 #    app.run()
