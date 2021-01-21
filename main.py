@@ -64,13 +64,6 @@ def callback():
 
     app.logger.info("★★.Request body: " + body)
 
-    #実ファイル取得 TODO:↓途中
-    messageId = body.message.id
-
-    # message_idから画像のバイナリデータを取得
-    messageContent = line_bot_api.get_message_content(messageId)
-    app.logger.info("★★Request messageContent: " + messageContent)
-
     # handle webhook body
     try:
         handler.handle(body, signature)
@@ -95,9 +88,9 @@ def handle_message_image(event):
 
     # message_idから画像のバイナリデータを取得
     messageContent = line_bot_api.get_message_content(messageId)
-
-    
+   
     #CloudinaryへUpload
+    res = cloudinary.uploader.upload(file=messageContent)
 
     #リプライ
     line_bot_api.reply_message(
