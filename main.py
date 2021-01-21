@@ -10,6 +10,7 @@ import cloudinary.uploader
 from cloudinary.uploader import upload
 import cloudinary.api
 from cloudinary.utils import cloudinary_url
+import glob
 
 
 from linebot import (
@@ -88,7 +89,7 @@ def handle_message_image(event):
 
     # message_idから画像のバイナリデータを取得
     messageContent = line_bot_api.get_message_content(messageId)
-    path = os.path.abspath(__file__).dirname
+    path = os.path.dirname(__file__)
 
     with open(f"{path}/static/images/{messageId}.jpg", "wb") as f:
         # バイナリを1024バイトずつ書き込む
@@ -98,6 +99,9 @@ def handle_message_image(event):
     #CloudinaryへUpload
     #res = cloudinary.uploader.upload(file=messageContent)
     app.logger.info("★★OK★★ ")
+
+    fileList = glob.glob(f"{path}/static/images/*.jpg")
+    app.logger.info("★★fileList: " + fileList)
 
     #リプライ
     line_bot_api.reply_message(
