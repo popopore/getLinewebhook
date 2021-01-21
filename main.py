@@ -94,8 +94,8 @@ def handle_message_image(event):
         #for chunk in messageContent.iter_content():
         #    f.write(chunk)
 
-    app.logger.info("★★リクエスト完了★★")
-    app.logger.info("★★messageContent:" + messageContent)  
+    #app.logger.info("★★リクエスト完了★★")
+    #app.logger.info("★★messageContent:" + messageContent)  
     
     #CloudinaryへUpload
 
