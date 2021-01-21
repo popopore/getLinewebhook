@@ -86,22 +86,21 @@ def handle_message_image(event):
     #実ファイル取得 TODO:↓途中
     #messageId = event.message.id
     #デバッグ用ログ
-    app.logger.info("★★.Request messageId: " + messageId)
+    #app.logger.info("★★.Request messageId: " + messageId)
 
-    lineGetImageUrl = 'https://api.line.me/v2/bot/message/' + messageId + '/content/'
+    #lineGetImageUrl = 'https://api.line.me/v2/bot/message/' + messageId + '/content/'
     #param="{'Content-Type':'application/json; charset=UTF-8','Authorization':'Bearer ' "+ YOUR_CHANNEL_ACCESS_TOKEN +"}}"    #デバッグ用ログ
-    app.logger.info("★★.Request parm: " + param)
+    #app.logger.info("★★.Request parm: " + param)
 
     #LineからImageのバイナリデータを取得
     #r = request.get(lineGetImageUrl,params=param)
     
-
     content = line_bot_api.get_message_content(event.message.id)
 
     with open('file', 'w') as f:
         for c in content.iter_content():
             f.write(c)
-            
+
     app.logger.info("★★リクエスト完了★★")
     
     #CloudinaryへUpload
