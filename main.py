@@ -88,11 +88,13 @@ def handle_message_image(event):
     #デバッグ用ログ
     app.logger.info("★★.Request messageId: " + messageId)
 
-    #lineGetUrl = 'https://api.line.me/v2/bot/message/' + messageId + '/content/'
-    parm="{'Content-Type':'application/json; charset=UTF-8','Authorization':'Bearer '+ YOUR_CHANNEL_ACCESS_TOKEN}"
-    
-    #デバッグ用ログ
-    app.logger.info("★★.Request parm: " + parm)
+    lineGetImageUrl = 'https://api.line.me/v2/bot/message/' + messageId + '/content/'
+    param="{'Content-Type':'application/json; charset=UTF-8','Authorization':'Bearer ' "+ YOUR_CHANNEL_ACCESS_TOKEN +"}}"    #デバッグ用ログ
+    app.logger.info("★★.Request parm: " + param)
+
+    #LineからImageのバイナリデータを取得
+    r = request.get(lineGetImageUrl,params=param)
+    app.logger.info("★★リクエスト完了★★")
 
     #CloudinaryへUpload
 
