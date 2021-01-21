@@ -90,7 +90,8 @@ def handle_message_image(event):
     messageContent = line_bot_api.get_message_content(messageId)
    
     #CloudinaryへUpload
-    res = cloudinary.uploader.upload(file=messageContent)
+    #res = cloudinary.uploader.upload(file=messageContent)
+    app.logger.info("★★テスト★★ ")
 
     #リプライ
     line_bot_api.reply_message(
