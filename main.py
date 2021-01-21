@@ -89,9 +89,14 @@ def handle_message_image(event):
     # message_idから画像のバイナリデータを取得
     messageContent = line_bot_api.get_message_content(messageId)
    
+    with open(Path(f"static/images/{messageId}.jpg").absolute(), "wb") as f:
+        # バイナリを1024バイトずつ書き込む
+        for chunk in messageContent.iter_content():
+            f.write(chunk)
+
     #CloudinaryへUpload
     #res = cloudinary.uploader.upload(file=messageContent)
-    app.logger.info("★★テスト★★ ")
+    app.logger.info("★★OK★★ ")
 
     #リプライ
     line_bot_api.reply_message(
