@@ -88,8 +88,9 @@ def handle_message_image(event):
 
     # message_idから画像のバイナリデータを取得
     messageContent = line_bot_api.get_message_content(messageId)
-   
-    with open(f"/static/images/{messageId}.jpg", "wb") as f:
+    path = os.path.abspath(__file__)
+
+    with open(f"{path}/static/images/{messageId}.jpg", "wb") as f:
         # バイナリを1024バイトずつ書き込む
         for chunk in messageContent.iter_content():
             f.write(chunk)
