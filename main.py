@@ -85,11 +85,13 @@ def handle_message_image(event):
 
     #実ファイル取得 TODO:↓途中
     messageId = event.message.id
-    #lineGetUrl = 'https://api.line.me/v2/bot/message/' + messageId + '/content/'
-    parm={'Content-Type':'application/json; charset=UTF-8','Authorization':'Bearer '+ YOUR_CHANNEL_ACCESS_TOKEN}
-    
     #デバッグ用ログ
     app.logger.info("★★.Request messageId: " + messageId)
+
+    #lineGetUrl = 'https://api.line.me/v2/bot/message/' + messageId + '/content/'
+    parm="{'Content-Type':'application/json; charset=UTF-8','Authorization':'Bearer '+ YOUR_CHANNEL_ACCESS_TOKEN}"
+    
+    #デバッグ用ログ
     app.logger.info("★★.Request parm: " + parm)
 
     #CloudinaryへUpload
