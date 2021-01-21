@@ -64,6 +64,13 @@ def callback():
 
     app.logger.info("★★.Request body: " + body)
 
+    #実ファイル取得 TODO:↓途中
+    messageId = body.message.id
+
+    # message_idから画像のバイナリデータを取得
+    messageContent = line_bot_api.get_message_content(messageId)
+    app.logger.info("★★Request messageContent: " + messageContent)
+
     # handle webhook body
     try:
         handler.handle(body, signature)
@@ -89,13 +96,6 @@ def handle_message_image(event):
     # message_idから画像のバイナリデータを取得
     messageContent = line_bot_api.get_message_content(messageId)
 
-    #with open(Path(f"static/images/{messageId}.jpg").absolute(), "wb") as f:
-        # バイナリを1024バイトずつ書き込む
-        #for chunk in messageContent.iter_content():
-        #    f.write(chunk)
-
-    #app.logger.info("★★リクエスト完了★★")
-    #app.logger.info("★★messageContent:" + messageContent)  
     
     #CloudinaryへUpload
 
