@@ -93,7 +93,7 @@ def handle_message_image(event):
 
     app.logger.info("★★path: " + path)
 
-    with open(f"{path}/static/images/{messageId}.jpg", "wb") as f:
+    with open(f"static/images/{messageId}.jpg", "wb") as f:
         # バイナリを1024バイトずつ書き込む
         for chunk in messageContent.iter_content():
             f.write(chunk)
