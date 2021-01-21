@@ -1,9 +1,15 @@
 #https://qiita.com/shimajiri/items/cf7ccf69d184fdb2fb26
 
 from flask import Flask, request, abort
+import requests
 import os
 import logging
 import sys
+import cloudinary
+import cloudinary.uploader
+from cloudinary.uploader import upload
+import cloudinary.api
+from cloudinary.utils import cloudinary_url
 
 
 from linebot import (
@@ -27,6 +33,13 @@ app.logger.setLevel(logging.INFO)
 
 #ログファイル出力 ↓いらないかも。。。
 logging.basicConfig(filename="operation.log")
+
+#Cloudinary設定↓
+cloudinary.config(
+    cloud_name = "yu1991ta",
+    api_key = "648747536824239",
+    api_secret = "F_PpehZ1SXIZKIYTZMynMHTENzw"
+)
 
 
 
@@ -69,12 +82,25 @@ def handle_message(event):
 #画像ファイルの場合
 @handler.add(MessageEvent, message=ImageMessage)
 def handle_message_image(event):
+
+    #実ファイル取得 TODO:↓途中
+    messageId = event.message.id
+    #lineGetUrl = 'https://api.line.me/v2/bot/message/' + messageId + '/content/'
+    parm={'Content-Type':'application/json; charset=UTF-8','Authorization':'Bearer '+ YOUR_CHANNEL_ACCESS_TOKEN}
+    
+    #デバッグ用ログ
+    app.logger.info("★★.Request messageId: " + messageId)
+    app.logger.info("★★.Request parm: " + parm)
+
+    #CloudinaryへUpload
+
+    #リプライ
     line_bot_api.reply_message(
         event.reply_token,
         TextSendMessage(text='ナイスですね～')
     )
 
-#その他ファイルの場合(音声、動画、)
+#その他ファイルの場合(音声、動画などなど。。。)
 @handler.add(MessageEvent, message=(VideoMessage,AudioMessage,LocationMessage,
 StickerMessage,FileMessage))
 def handle_message_other(event):
