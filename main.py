@@ -106,7 +106,7 @@ def handle_message_image(event):
         app.logger.info("★★fileList: " + file)
 
     #CloudinaryへUpload
-    res = cloudinary.uploader.upload(f"static/images/{messageId}.jpg")
+    res = cloudinary.uploader.upload(file=f"static/images/{messageId}.jpg",folder='01.WeddingPhoteSlide')
 
     #リプライ
     line_bot_api.reply_message(
