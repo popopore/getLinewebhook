@@ -98,13 +98,15 @@ def handle_message_image(event):
         for chunk in messageContent.iter_content():
             f.write(chunk)
 
-    #CloudinaryへUpload
-    #res = cloudinary.uploader.upload(file=messageContent)
+
     app.logger.info("★★OK★★ ")
 
     fileList = glob.glob(f"static/images/*.jpg")
     for file in fileList:
         app.logger.info("★★fileList: " + file)
+
+    #CloudinaryへUpload
+    res = cloudinary.uploader.upload(f"static/images/{messageId}.jpg")
 
     #リプライ
     line_bot_api.reply_message(
