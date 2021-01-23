@@ -103,7 +103,7 @@ def handle_message_image(event):
     app.logger.info("★★OK★★ ")
 
     fileList = glob.glob(f"static/images/*.jpg")
-    for file in fileList
+    for file in fileList:
         app.logger.info("★★fileList: " + file)
 
     #リプライ
