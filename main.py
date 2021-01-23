@@ -102,8 +102,9 @@ def handle_message_image(event):
     #res = cloudinary.uploader.upload(file=messageContent)
     app.logger.info("★★OK★★ ")
 
-    fileList = glob.glob(f"{path}/static/images/*.jpg")
-    app.logger.info("★★fileList: " + fileList)
+    fileList = glob.glob(f"static/images/*.jpg")
+    for file in fileList
+        app.logger.info("★★fileList: " + file)
 
     #リプライ
     line_bot_api.reply_message(
